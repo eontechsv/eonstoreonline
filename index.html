@@ -6,103 +6,175 @@
 <title>EON Tech SV</title>
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   background: #0b0f14;
   color: #fff;
 }
 
+/* HEADER */
 header {
   text-align: center;
-  padding: 15px;
+  padding: 20px 10px;
 }
-
 header img {
-  width: 120px;
+  width: 110px;
 }
-
-h1 {
+header h1 {
+  margin: 8px 0 0;
   color: #00f5ff;
-  margin: 5px 0;
 }
 
-.contenedor {
-  max-width: 600px;
+/* CONTENEDOR */
+.container {
+  max-width: 520px;
   margin: auto;
   padding: 10px;
 }
 
-.producto {
+/* PRODUCTOS */
+.product {
   background: #121826;
-  border-radius: 14px;
+  border-radius: 18px;
   padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  animation: fadeUp 0.4s ease;
 }
-
-.producto img {
+.product img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 14px;
 }
-
-.producto h3 {
+.product h3 {
+  margin: 10px 0 5px;
   color: #00f5ff;
 }
-
-button {
+.product p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+.product button {
   width: 100%;
-  padding: 12px;
-  background: #00f5ff;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-}
-
-.carrito {
-  background: #121826;
-  padding: 15px;
+  padding: 14px;
+  margin-top: 10px;
   border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg,#00f5ff,#00c2cc);
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.carrito li {
+/* CARRITO */
+.cart {
+  background: #121826;
+  border-radius: 18px;
+  padding: 15px;
+}
+.cart li {
   list-style: none;
   background: #0f1624;
-  padding: 10px;
   margin-bottom: 8px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.cart-total {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #00f5ff;
+}
+.cart button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: #25D366;
+  color: white;
+  font-size: 15px;
 }
 
 /* MODAL */
 .modal {
-  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.65);
+  display: none;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 999;
 }
-
-.modal-contenido {
+.modal-box {
   background: #121826;
   width: 90%;
-  max-width: 350px;
-  border-radius: 14px;
+  max-width: 360px;
+  border-radius: 20px;
   padding: 15px;
+  animation: fadeUp 0.3s ease;
 }
-
-.modal-contenido img {
+.modal-box img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 14px;
 }
-
-select, input {
+.color-options {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+.color {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.color.selected {
+  outline: 3px solid #00f5ff;
+}
+input {
   width: 100%;
-  padding: 8px;
-  margin-top: 8px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 12px;
   border: none;
+}
+.modal-box button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  margin-top: 10px;
+}
+.btn-add {
+  background: linear-gradient(135deg,#00f5ff,#00c2cc);
+  font-weight: bold;
+}
+.btn-cancel {
+  background: #ff3b3b;
+  color: white;
+}
+
+/* BOTÓN WHATSAPP */
+.whatsapp {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: #25D366;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  text-decoration: none;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -114,124 +186,120 @@ select, input {
   <h1>EON Tech SV</h1>
 </header>
 
-<div class="contenedor">
+<div class="container">
 
-<!-- PRODUCTO SMARTWATCH -->
-<div class="producto">
+<!-- PRODUCTOS -->
+<div class="product">
   <img src="reloj%20inteligente.jpg.jpeg">
-  <h3>⌚ SmartWatch T900 Pro Max – $20</h3>
-  <button onclick="abrirModal('SmartWatch T900 Pro Max',20,'reloj%20inteligente.jpg.jpeg')">
-    Comprar ahora
-  </button>
+  <h3>⌚ SmartWatch T900 Pro Max</h3>
+  <p>$20 · Negro · Blanco · Rosado</p>
+  <button onclick="openModal('SmartWatch T900 Pro Max',20,'reloj%20inteligente.jpg.jpeg')">Comprar</button>
 </div>
 
-<!-- PRODUCTO AIRPODS -->
-<div class="producto">
+<div class="product">
   <img src="airpods.jpg.jpeg">
-  <h3>🎧 AirPods 2ª Generación – $25</h3>
-  <button onclick="abrirModal('AirPods 2ª Generación',25,'airpods.jpg.jpeg')">
-    Comprar ahora
-  </button>
+  <h3>🎧 AirPods 2ª Generación</h3>
+  <p>$25 · Bluetooth · Sonido HD</p>
+  <button onclick="openModal('AirPods 2ª Generación',25,'airpods.jpg.jpeg')">Comprar</button>
 </div>
 
 <!-- CARRITO -->
-<div class="carrito">
+<div class="cart">
   <h3>🛒 Carrito</h3>
-  <ul id="lista"></ul>
-  <p id="total"></p>
-  <button onclick="finalizar()">Finalizar compra</button>
+  <ul id="cartList"></ul>
+  <div class="cart-total" id="cartTotal"></div>
+  <button onclick="sendWhatsApp()">Finalizar pedido</button>
 </div>
 
 </div>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
-  <div class="modal-contenido">
-    <img id="modal-img">
-    <h3 id="modal-nombre"></h3>
-    <p id="modal-precio"></p>
+  <div class="modal-box">
+    <img id="modalImg">
+    <h3 id="modalName"></h3>
+    <p id="modalPrice"></p>
 
-    <label>Color</label>
-    <select id="modal-color">
-      <option>Negro</option>
-      <option>Blanco</option>
-      <option>Rosado</option>
-    </select>
+    <strong>Color</strong>
+    <div class="color-options">
+      <div class="color" style="background:black" onclick="selectColor('Negro',this)"></div>
+      <div class="color" style="background:white" onclick="selectColor('Blanco',this)"></div>
+      <div class="color" style="background:pink" onclick="selectColor('Rosado',this)"></div>
+    </div>
 
-    <label>Cantidad</label>
-    <input type="number" id="modal-cantidad" value="1" min="1">
+    <strong>Cantidad</strong>
+    <input type="number" id="qty" min="1" value="1">
 
-    <button onclick="confirmarProducto()">Agregar al carrito</button>
-    <button onclick="cerrarModal()" style="margin-top:8px;background:#ff3b3b;color:white;">
-      Cancelar
-    </button>
+    <button class="btn-add" onclick="addToCart()">Agregar al carrito</button>
+    <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
   </div>
 </div>
 
-<script>
-let carrito = [];
-let total = 0;
-let productoActual = {};
+<a class="whatsapp" href="https://wa.me/50375268799" target="_blank">💬</a>
 
-function abrirModal(nombre, precio, img) {
-  productoActual = { nombre, precio, img };
-  document.getElementById("modal-img").src = img;
-  document.getElementById("modal-nombre").innerText = nombre;
-  document.getElementById("modal-precio").innerText = "$" + precio;
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let current = {};
+let selectedColor = "Negro";
+
+updateCart();
+
+function openModal(name, price, img) {
+  current = { name, price, img };
+  document.getElementById("modalImg").src = img;
+  document.getElementById("modalName").innerText = name;
+  document.getElementById("modalPrice").innerText = "$" + price;
   document.getElementById("modal").style.display = "flex";
 }
 
-function cerrarModal() {
+function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-function confirmarProducto() {
-  const color = document.getElementById("modal-color").value;
-  const cantidad = parseInt(document.getElementById("modal-cantidad").value);
-
-  carrito.push({
-    ...productoActual,
-    color,
-    cantidad
-  });
-
-  cerrarModal();
-  actualizarCarrito();
+function selectColor(color, el) {
+  selectedColor = color;
+  document.querySelectorAll(".color").forEach(c => c.classList.remove("selected"));
+  el.classList.add("selected");
 }
 
-function actualizarCarrito() {
-  const lista = document.getElementById("lista");
-  const totalTexto = document.getElementById("total");
-  lista.innerHTML = "";
-  total = 0;
-  let cant = 0;
+function addToCart() {
+  const qty = parseInt(document.getElementById("qty").value);
+  cart.push({ ...current, color: selectedColor, qty });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  closeModal();
+  updateCart();
+}
 
-  carrito.forEach(p => {
-    total += p.precio * p.cantidad;
-    cant += p.cantidad;
-    lista.innerHTML += `<li>${p.nombre} (${p.color}) x${p.cantidad}</li>`;
+function updateCart() {
+  const list = document.getElementById("cartList");
+  const totalText = document.getElementById("cartTotal");
+  list.innerHTML = "";
+  let total = 0;
+  let count = 0;
+
+  cart.forEach(p => {
+    total += p.price * p.qty;
+    count += p.qty;
+    list.innerHTML += `<li>${p.name} (${p.color}) x${p.qty}</li>`;
   });
 
-  if (cant >= 3) {
+  if (count >= 3) {
     total *= 0.96;
-    totalTexto.innerText = "Total con descuento: $" + total.toFixed(2);
+    totalText.innerText = "Total con descuento: $" + total.toFixed(2);
   } else {
-    totalTexto.innerText = "Total: $" + total.toFixed(2);
+    totalText.innerText = "Total: $" + total.toFixed(2);
   }
 }
 
-function finalizar() {
-  let mensaje = "🛒 Pedido EON Tech SV%0A";
-  carrito.forEach(p => {
-    mensaje += `• ${p.nombre} (${p.color}) x${p.cantidad}%0A`;
+function sendWhatsApp() {
+  let msg = "🛒 Pedido EON Tech SV%0A";
+  cart.forEach(p => {
+    msg += `• ${p.name} (${p.color}) x${p.qty}%0A`;
   });
-  mensaje += `%0ATotal: $${total.toFixed(2)}`;
-  window.open("https://wa.me/50375268799?text=" + mensaje);
+  msg += `%0ATotal: $${document.getElementById("cartTotal").innerText.replace(/[^0-9.]/g,'')}`;
+  window.open("https://wa.me/50375268799?text=" + msg);
 }
 </script>
 
 </body>
 </html>
-
-
-
