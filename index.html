@@ -6,37 +6,25 @@
 <title>EON Tech SV</title>
 
 <style>
-:root {
-  --principal: #00f5ff;
-  --fondo: #0b0f14;
-  --tarjeta: #121826;
-}
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: var(--fondo);
-  color: #ffffff;
+  background: #0b0f14;
+  color: #fff;
 }
 
 header {
   text-align: center;
-  padding: 20px 10px;
+  padding: 15px;
 }
 
 header img {
-  width: 130px;
-  margin-bottom: 10px;
+  width: 120px;
 }
 
-header h1 {
-  color: var(--principal);
-  margin: 0;
-}
-
-header p {
-  color: #bfc7d5;
-  margin-top: 5px;
+h1 {
+  color: #00f5ff;
+  margin: 5px 0;
 }
 
 .contenedor {
@@ -46,92 +34,75 @@ header p {
 }
 
 .producto {
-  background: var(--tarjeta);
+  background: #121826;
   border-radius: 14px;
   padding: 15px;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .producto img {
   width: 100%;
   border-radius: 12px;
-  margin-bottom: 10px;
 }
 
 .producto h3 {
-  margin: 5px 0;
-  color: var(--principal);
-}
-
-.producto p {
-  font-size: 14px;
-  color: #d0d6e0;
-}
-
-label {
-  font-size: 13px;
-}
-
-select, input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: none;
+  color: #00f5ff;
 }
 
 button {
   width: 100%;
   padding: 12px;
-  background: var(--principal);
+  background: #00f5ff;
   color: #000;
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #00c9d1;
 }
 
 .carrito {
-  background: var(--tarjeta);
-  border-radius: 14px;
+  background: #121826;
   padding: 15px;
-}
-
-.carrito ul {
-  padding: 0;
+  border-radius: 14px;
 }
 
 .carrito li {
   list-style: none;
   background: #0f1624;
-  margin-bottom: 10px;
   padding: 10px;
+  margin-bottom: 8px;
   border-radius: 8px;
 }
 
-.eliminar {
-  background: #ff3b3b;
-  color: white;
-  margin-top: 5px;
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.total {
-  font-size: 18px;
-  margin-top: 10px;
-  color: var(--principal);
-}
-
-.formulario {
-  margin-top: 20px;
-  background: var(--tarjeta);
-  padding: 15px;
+.modal-contenido {
+  background: #121826;
+  width: 90%;
+  max-width: 350px;
   border-radius: 14px;
+  padding: 15px;
+}
+
+.modal-contenido img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+select, input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: none;
 }
 </style>
 </head>
@@ -139,154 +110,128 @@ button:hover {
 <body>
 
 <header>
-  <img src="logo.png.jpeg">
+  <img src="logotipo.png.jpeg">
   <h1>EON Tech SV</h1>
-  <p>Tienda en línea de tecnología</p>
 </header>
 
 <div class="contenedor">
 
-<!-- SMARTWATCH -->
+<!-- PRODUCTO SMARTWATCH -->
 <div class="producto">
-  <img src="smarwatch.jpg.jpeg">
-  <h3>⌚ SmartWatch T900 Pro Max Serie 9 – $20</h3>
-  <p>
-    📞 Llamadas Bluetooth<br>
-    ❤️ Salud y actividad física<br>
-    📩 Notificaciones WhatsApp<br>
-    🔋 Batería 48–72 horas<br>
-    📱 Android & iOS
-  </p>
-
-  <label>Color</label>
-  <select id="color-watch">
-    <option>Negro</option>
-    <option>Blanco</option>
-    <option>Rosado</option>
-  </select>
-
-  <label>Cantidad</label>
-  <input type="number" id="cantidad-watch" value="1" min="1">
-
-  <button onclick="agregarProducto('SmartWatch T900 Pro Max Serie 9',20,'color-watch','cantidad-watch')">
-    Agregar al carrito
+  <img src="reloj%20inteligente.jpg.jpeg">
+  <h3>⌚ SmartWatch T900 Pro Max – $20</h3>
+  <button onclick="abrirModal('SmartWatch T900 Pro Max',20,'reloj%20inteligente.jpg.jpeg')">
+    Comprar ahora
   </button>
 </div>
 
-<!-- AIRPODS -->
+<!-- PRODUCTO AIRPODS -->
 <div class="producto">
   <img src="airpods.jpg.jpeg">
   <h3>🎧 AirPods 2ª Generación – $25</h3>
-  <p>
-    ✨ Calidad premium<br>
-    🔇 Cancelación de ruido<br>
-    🔊 Sonido HD<br>
-    🔋 5–6 horas de uso<br>
-    📱 iOS & Android
-  </p>
-
-  <label>Color</label>
-  <select id="color-airpods">
-    <option>Blanco</option>
-  </select>
-
-  <label>Cantidad</label>
-  <input type="number" id="cantidad-airpods" value="1" min="1">
-
-  <button onclick="agregarProducto('AirPods 2ª Generación',25,'color-airpods','cantidad-airpods')">
-    Agregar al carrito
+  <button onclick="abrirModal('AirPods 2ª Generación',25,'airpods.jpg.jpeg')">
+    Comprar ahora
   </button>
 </div>
 
 <!-- CARRITO -->
 <div class="carrito">
   <h3>🛒 Carrito</h3>
-  <ul id="lista-carrito"></ul>
-  <div class="total" id="total"></div>
-  <button onclick="mostrarFormulario()">Finalizar compra</button>
+  <ul id="lista"></ul>
+  <p id="total"></p>
+  <button onclick="finalizar()">Finalizar compra</button>
 </div>
 
-<!-- FORMULARIO -->
-<div class="formulario" id="formulario" style="display:none;">
-  <h3>📋 Datos del cliente</h3>
-  <input id="nombre" placeholder="Nombre completo">
-  <input id="telefono" placeholder="Teléfono">
-  <input id="direccion" placeholder="Departamento y municipio">
-  <button onclick="enviarWhatsApp()">Enviar pedido</button>
 </div>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-contenido">
+    <img id="modal-img">
+    <h3 id="modal-nombre"></h3>
+    <p id="modal-precio"></p>
+
+    <label>Color</label>
+    <select id="modal-color">
+      <option>Negro</option>
+      <option>Blanco</option>
+      <option>Rosado</option>
+    </select>
+
+    <label>Cantidad</label>
+    <input type="number" id="modal-cantidad" value="1" min="1">
+
+    <button onclick="confirmarProducto()">Agregar al carrito</button>
+    <button onclick="cerrarModal()" style="margin-top:8px;background:#ff3b3b;color:white;">
+      Cancelar
+    </button>
+  </div>
 </div>
 
 <script>
 let carrito = [];
 let total = 0;
+let productoActual = {};
 
-function agregarProducto(nombre, precio, colorId, cantidadId) {
-  const color = document.getElementById(colorId).value;
-  const cantidad = parseInt(document.getElementById(cantidadId).value);
-  carrito.push({ nombre, precio, color, cantidad });
-  mostrarCarrito();
+function abrirModal(nombre, precio, img) {
+  productoActual = { nombre, precio, img };
+  document.getElementById("modal-img").src = img;
+  document.getElementById("modal-nombre").innerText = nombre;
+  document.getElementById("modal-precio").innerText = "$" + precio;
+  document.getElementById("modal").style.display = "flex";
 }
 
-function eliminarProducto(index) {
-  carrito.splice(index, 1);
-  mostrarCarrito();
+function cerrarModal() {
+  document.getElementById("modal").style.display = "none";
 }
 
-function mostrarCarrito() {
-  const lista = document.getElementById("lista-carrito");
+function confirmarProducto() {
+  const color = document.getElementById("modal-color").value;
+  const cantidad = parseInt(document.getElementById("modal-cantidad").value);
+
+  carrito.push({
+    ...productoActual,
+    color,
+    cantidad
+  });
+
+  cerrarModal();
+  actualizarCarrito();
+}
+
+function actualizarCarrito() {
+  const lista = document.getElementById("lista");
   const totalTexto = document.getElementById("total");
   lista.innerHTML = "";
   total = 0;
-  let cantidadTotal = 0;
+  let cant = 0;
 
-  carrito.forEach((p, i) => {
+  carrito.forEach(p => {
     total += p.precio * p.cantidad;
-    cantidadTotal += p.cantidad;
-
-    lista.innerHTML += `
-      <li>
-        ${p.nombre} (${p.color}) x${p.cantidad}
-        <button class="eliminar" onclick="eliminarProducto(${i})">Eliminar</button>
-      </li>`;
+    cant += p.cantidad;
+    lista.innerHTML += `<li>${p.nombre} (${p.color}) x${p.cantidad}</li>`;
   });
 
-  if (cantidadTotal >= 3) {
+  if (cant >= 3) {
     total *= 0.96;
-    totalTexto.innerText = "Total con 4% descuento: $" + total.toFixed(2);
+    totalTexto.innerText = "Total con descuento: $" + total.toFixed(2);
   } else {
     totalTexto.innerText = "Total: $" + total.toFixed(2);
   }
 }
 
-function mostrarFormulario() {
-  document.getElementById("formulario").style.display = "block";
-}
-
-function enviarWhatsApp() {
-  const nombre = document.getElementById("nombre").value;
-  const telefono = document.getElementById("telefono").value;
-  const direccion = document.getElementById("direccion").value;
-
-  if (!nombre || !telefono || !direccion) {
-    alert("Completa todos los datos");
-    return;
-  }
-
-  let mensaje = "📦 Pedido EON Tech SV%0A%0A";
+function finalizar() {
+  let mensaje = "🛒 Pedido EON Tech SV%0A";
   carrito.forEach(p => {
     mensaje += `• ${p.nombre} (${p.color}) x${p.cantidad}%0A`;
   });
-
-  mensaje += `%0A💰 Total: $${total.toFixed(2)}%0A`;
-  mensaje += `👤 Cliente: ${nombre}%0A`;
-  mensaje += `📞 Tel: ${telefono}%0A`;
-  mensaje += `📍 Dirección: ${direccion}`;
-
-  window.open("https://wa.me/50375268799?text=" + mensaje, "_blank");
+  mensaje += `%0ATotal: $${total.toFixed(2)}`;
+  window.open("https://wa.me/50375268799?text=" + mensaje);
 }
 </script>
 
 </body>
 </html>
+
+
 
