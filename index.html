@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>EON Tech SV</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0b0f14;
+  color: #fff;
+  padding: 20px;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #00f5ff;
+  margin-bottom: 5px;
+}
+
+h2 {
+  border-bottom: 2px solid #00f5ff;
+  padding-bottom: 5px;
+  margin-top: 30px;
+}
+
+.producto {
+  background: #121826;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 12px;
+}
+
+.producto img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background: #00f5ff;
+  color: #000;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00c8d1;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 10px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+#carrito {
+  background: #121826;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+#carrito li {
+  list-style: none;
+  margin-bottom: 10px;
+  background: #0f1624;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.btn-eliminar {
+  background: #ff3b3b;
+  color: white;
+  margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<img src="imagenes/logo.png" style="display:block;margin:10px auto;width:130px;">
+<h1>EON Tech SV</h1>
+<p style="text-align:center;">Tienda oficial</p>
+
+<h2>Productos</h2>
+
+<!-- SMARTWATCH -->
+<div class="producto">
+<img src="imagenes/smartwatch.jpg">
+
+<h3>⌚ SmartWatch T900 Pro Max Serie 9 – $20</h3>
+<p>
+📞 Llamadas Bluetooth<br>
+❤️ Ritmo cardíaco, presión y oxígeno<br>
+📩 Notificaciones de WhatsApp y redes<br>
+🏃 Actividad física<br>
+🔋 Batería 48–72 horas<br>
+📱 Android y iOS
+</p>
+
+<label>Color</label>
+<select id="color-watch">
+  <option>Negro</option>
+  <option>Plateado</option>
+</select>
+
+<label>Cantidad</label>
+<input type="number" id="cantidad-watch" value="1" min="1">
+
+<button onclick="agregarProducto('SmartWatch T900 Pro Max Serie 9',20,'color-watch','cantidad-watch')">
+Agregar al carrito
+</button>
+</div>
+
+<!-- AIRPODS -->
+<div class="producto">
+<img src="imagenes/airpods.jpg">
+
+<h3>🎧 AirPods 2ª Generación – $25</h3>
+<p>
+✨ Calidad premium<br>
+🔇 Cancelación de ruido<br>
+🔊 Sonido de alta fidelidad<br>
+🔋 5–6 horas de uso<br>
+⚡ Control táctil<br>
+📱 Compatibles con iOS y Android
+</p>
+
+<label>Color</label>
+<select id="color-airpods">
+  <option>Blanco</option>
+</select>
+
+<label>Cantidad</label>
+<input type="number" id="cantidad-airpods" value="1" min="1">
+
+<button onclick="agregarProducto('AirPods 2ª Generación',25,'color-airpods','cantidad-airpods')">
+Agregar al carrito
+</button>
+</div>
+
+<h2>🛒 Carrito</h2>
+<ul id="carrito"></ul>
+<p id="total"></p>
+
+<button onclick="mostrarFormulario()">Finalizar compra</button>
+
+<div id="formulario" style="display:none;">
+<h3>Datos del cliente</h3>
+
+<input id="nombre" placeholder="Nombre completo">
+<input id="telefono" placeholder="Teléfono">
+<input id="direccion" placeholder="Departamento y municipio">
+
+<button onclick="enviarWhatsApp()">Enviar pedido por WhatsApp</button>
+</div>
+
+<script>
+let carrito = [];
+let total = 0;
+
+function agregarProducto(nombre, precio, colorId, cantidadId) {
+  let color = document.getElementById(colorId).value;
+  let cantidad = parseInt(document.getElementById(cantidadId).value);
+  carrito.push({ nombre, precio, color, cantidad });
+  mostrarCarrito();
+}
+
+function eliminarProducto(index) {
+  carrito.splice(index, 1);
+  mostrarCarrito();
+}
+
+function mostrarCarrito() {
+  let lista = document.getElementById("carrito");
+  let totalTexto = document.getElementById("total");
+
+  lista.innerHTML = "";
+  total = 0;
+  let cantidadTotal = 0;
+
+  carrito.forEach((p, index) => {
+    total += p.precio * p.cantidad;
+    cantidadTotal += p.cantidad;
+
+    let li = document.createElement("li");
+    li.innerHTML = `
+      ${p.nombre} (${p.color}) x${p.cantidad}
+      <br>
+      <button class="btn-eliminar" onclick="eliminarProducto(${index})">
+        Eliminar
+      </button>
+    `;
+    lista.appendChild(li);
+  });
+
+  if (cantidadTotal >= 3) {
+    total *= 0.9;
+    totalTexto.textContent = "Total con descuento 10%: $" + total.toFixed(2);
+  } else {
+    totalTexto.textContent = "Total: $" + total.toFixed(2);
+  }
+}
+
+function mostrarFormulario() {
+  document.getElementById("formulario").style.display = "block";
+}
+
+function enviarWhatsApp() {
+  let nombre = document.getElementById("nombre").value;
+  let telefono = document.getElementById("telefono").value;
+  let direccion = document.getElementById("direccion").value;
+
+  if (!nombre || !telefono || !direccion) {
+    alert("Completa todos los datos");
+    return;
+  }
+
+  let mensaje = "📦 Pedido EON Tech SV%0A%0A";
+  carrito.forEach(p => {
+    mensaje += `• ${p.nombre} (${p.color}) x${p.cantidad}%0A`;
+  });
+
+  mensaje += `%0A💰 Total: $${total.toFixed(2)}%0A`;
+  mensaje += `👤 Cliente: ${nombre}%0A`;
+  mensaje += `📞 Tel: ${telefono}%0A`;
+  mensaje += `📍 Dirección: ${direccion}`;
+
+  window.open("https://wa.me/50375268799?text=" + mensaje, "_blank");
+}
+</script>
+
+</body>
+</html>
