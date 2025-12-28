@@ -6,118 +6,65 @@
 <title>EON Tech SV</title>
 
 <style>
-*{box-sizing:border-box}
 body{
   margin:0;
   font-family:Arial, sans-serif;
   background:#0b0f14;
-  color:#fff;
+  color:white;
 }
 header{
   text-align:center;
   padding:20px;
 }
-header img{
-  width:120px;
-}
-header h1{
-  margin:10px 0 0;
-  color:#00f5ff;
-}
-
-.container{
-  max-width:600px;
-  margin:auto;
-  padding:10px;
-}
-
+header img{width:120px}
 .product{
   background:#121826;
-  border-radius:16px;
+  margin:15px;
   padding:15px;
-  margin-bottom:22px;
+  border-radius:18px;
 }
 .product img{
   width:100%;
   border-radius:12px;
 }
-.product h3{
-  margin:10px 0 5px;
-  color:#00f5ff;
-}
-.product p{
-  font-size:14px;
-  line-height:1.4;
-}
-.product button{
+.product h3{color:#00f5ff}
+button{
   width:100%;
   padding:14px;
   border:none;
   border-radius:14px;
   background:linear-gradient(135deg,#00f5ff,#00c2cc);
   font-weight:bold;
-  font-size:15px;
   margin-top:10px;
 }
 
-/* CARRITO */
-.cart{
-  background:#121826;
-  padding:15px;
-  border-radius:16px;
-}
-.cart h3{
-  margin-top:0;
-}
-.cart-item{
-  background:#0f1624;
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:8px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:14px;
-}
-.cart-item button{
-  background:#ff3b3b;
-  color:white;
-  border:none;
-  border-radius:8px;
-  padding:5px 8px;
-  font-size:12px;
-}
-.cart-total{
-  margin-top:10px;
-  font-size:16px;
-  color:#00f5ff;
-}
-.cart button{
-  margin-top:10px;
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  background:#25D366;
-  color:white;
-  font-size:15px;
-}
-
-/* WHATSAPP */
-.whatsapp{
+/* MODAL */
+.modal{
   position:fixed;
-  bottom:15px;
-  right:15px;
-  background:#25D366;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,.85);
+  display:none;
   justify-content:center;
-  font-size:28px;
-  text-decoration:none;
-  color:white;
+  align-items:center;
+  z-index:1000;
+}
+.modal-content{
+  background:#121826;
+  padding:20px;
+  border-radius:16px;
+  width:90%;
+  max-width:400px;
+}
+select,input{
+  width:100%;
+  padding:12px;
+  margin-top:8px;
+  border-radius:10px;
+  border:none;
+}
+.close{
+  background:#ff3b3b;
 }
 </style>
 </head>
@@ -125,124 +72,118 @@ header h1{
 <body>
 
 <header>
-  <img src="logo.png.jpeg">
-  <h1>EON Tech SV</h1>
-  <p>Tienda oficial</p>
+<img src="logo.png.jpeg">
+<h2>EON Tech SV</h2>
 </header>
-
-<div class="container">
 
 <!-- SMARTWATCH -->
 <div class="product">
 <img src="smartwatch.jpg.jpeg">
 <h3>⌚ SmartWatch T900 Pro Max – $20</h3>
-<p>
-📞 Llamadas Bluetooth<br>
-❤️ Ritmo cardíaco, presión arterial y oxígeno<br>
-📩 Notificaciones de WhatsApp y redes sociales<br>
-🏃‍♂️ Actividad física (pasos, calorías, deportes)<br>
-🔋 Batería 48–72 horas<br>
-📱 Compatible con Android y iOS<br>
-🎨 Colores: Negro, Blanco y Rosado
-</p>
-<button onclick="addToCart('SmartWatch T900 Pro Max',20)">Agregar al carrito</button>
+<p>Llamadas, salud, notificaciones, Android & iOS</p>
+<button onclick="openBuy('SmartWatch T900 Pro Max',20,['Negro','Blanco','Rosado'])">Comprar</button>
 </div>
 
 <!-- AIRPODS -->
 <div class="product">
 <img src="airpods.jpg.jpeg">
 <h3>🎧 AirPods 2ª Generación – $25</h3>
-<p>
-✨ Calidad Premium<br>
-🔇 Cancelación de ruido<br>
-🔊 Sonido de alta fidelidad<br>
-🔋 5–6 horas de uso continuo<br>
-⚡ Control táctil<br>
-📱 Compatibles con iOS y Android
-</p>
-<button onclick="addToCart('AirPods 2ª Generación',25)">Agregar al carrito</button>
+<p>Cancelación de ruido, sonido premium</p>
+<button onclick="openBuy('AirPods 2ª Generación',25,['Blanco'])">Comprar</button>
 </div>
 
 <!-- INPODS -->
 <div class="product">
-<img src="inpods12.jpg.jpeg">
+<img src="inpods12.pgej">
 <h3>🎧 inPods 12 – $10</h3>
-<p>
-🎨 <strong>Colores disponibles:</strong><br>
-Negro, Blanco, Rojo, Rosado, Morado,<br>
-Azul, Celeste, Verde, Verde menta, Amarillo<br><br>
-🔊 Sonido estéreo<br>
-📱 Android y iOS<br>
-⚡ Estuche de carga incluido<br>
-✨ Diseño compacto y ligero
-</p>
-<button onclick="addToCart('inPods 12 (color a elegir)',10)">Agregar al carrito</button>
+<p>Colores múltiples, Android & iOS</p>
+<button onclick="openBuy('inPods 12',10,
+['Negro','Blanco','Rojo','Rosado','Morado','Azul','Celeste','Verde','Menta','Amarillo'])">
+Comprar
+</button>
 </div>
 
-<!-- CARRITO -->
-<div class="cart">
-<h3>🛒 Carrito</h3>
-<div id="cartItems"></div>
-<div class="cart-total" id="cartTotal">Total: $0</div>
-<button onclick="sendWhatsApp()">Finalizar pedido</button>
+<!-- MODAL COMPRA -->
+<div class="modal" id="buyModal">
+<div class="modal-content">
+<h3 id="pName"></h3>
+
+<label>Color</label>
+<select id="pColor"></select>
+
+<label>Cantidad</label>
+<input type="number" id="pQty" value="1" min="1">
+
+<p id="pPrice"></p>
+
+<button onclick="nextData()">Continuar</button>
+<button class="close" onclick="closeModal()">Cancelar</button>
+</div>
 </div>
 
-</div>
+<!-- MODAL DATOS -->
+<div class="modal" id="dataModal">
+<div class="modal-content">
+<h3>Datos del cliente</h3>
 
-<a class="whatsapp" href="https://wa.me/50375268799" target="_blank">💬</a>
+<input placeholder="Nombre y apellido" id="cName">
+<input placeholder="Teléfono" id="cPhone">
+<input placeholder="Departamento" id="cDept">
+<input placeholder="Municipio" id="cMun">
+<input placeholder="Dirección exacta" id="cAddr">
+
+<button onclick="sendWhats()">Enviar pedido</button>
+<button class="close" onclick="closeData()">Cancelar</button>
+</div>
+</div>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let product={}, total=0;
 
-function addToCart(name, price){
-  cart.push({name, price});
-  saveCart();
-}
-
-function removeItem(index){
-  cart.splice(index,1);
-  saveCart();
-}
-
-function saveCart(){
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-}
-
-function renderCart(){
-  let html = "";
-  let total = 0;
-
-  cart.forEach((item, i) => {
-    total += item.price;
-    html += `
-      <div class="cart-item">
-        ${item.name} - $${item.price}
-        <button onclick="removeItem(${i})">X</button>
-      </div>
-    `;
+function openBuy(name,price,colors){
+  product={name,price};
+  document.getElementById("pName").innerText=name;
+  let c=document.getElementById("pColor");
+  c.innerHTML="";
+  colors.forEach(col=>{
+    c.innerHTML+=`<option>${col}</option>`;
   });
-
-  document.getElementById("cartItems").innerHTML = html;
-  document.getElementById("cartTotal").innerText = "Total: $" + total;
+  document.getElementById("pPrice").innerText="Precio: $"+price;
+  document.getElementById("buyModal").style.display="flex";
 }
 
-function sendWhatsApp(){
-  if(cart.length === 0){
-    alert("El carrito está vacío");
-    return;
-  }
-
-  let msg = "🛒 Pedido EON Tech SV%0A";
-  cart.forEach(item => {
-    msg += `• ${item.name} - $${item.price}%0A`;
-  });
-  msg += `%0ATotal: $${cart.reduce((s,i)=>s+i.price,0)}`;
-
-  window.open("https://wa.me/50375268799?text=" + msg);
+function closeModal(){
+  document.getElementById("buyModal").style.display="none";
 }
 
-renderCart();
+function nextData(){
+  product.color=pColor.value;
+  product.qty=pQty.value;
+  total=product.price*product.qty;
+  closeModal();
+  document.getElementById("dataModal").style.display="flex";
+}
+
+function closeData(){
+  document.getElementById("dataModal").style.display="none";
+}
+
+function sendWhats(){
+  let msg=`🛒 Pedido EON Tech SV
+Producto: ${product.name}
+Color: ${product.color}
+Cantidad: ${product.qty}
+Total: $${total}
+
+Cliente:
+Nombre: ${cName.value}
+Teléfono: ${cPhone.value}
+Departamento: ${cDept.value}
+Municipio: ${cMun.value}
+Dirección: ${cAddr.value}`;
+
+  window.open("https://wa.me/50375268799?text="+encodeURIComponent(msg));
+}
 </script>
 
 </body>
