@@ -202,9 +202,10 @@ function mostrarCarrito() {
     lista.appendChild(li);
   });
 
+  /* DESCUENTO 4% SI COMPRA 3 O MÁS PRODUCTOS */
   if (cantidadTotal >= 3) {
-    total *= 0.9;
-    totalTexto.textContent = "Total con descuento 10%: $" + total.toFixed(2);
+    total = total * 0.96;
+    totalTexto.textContent = "Total con descuento 4%: $" + total.toFixed(2);
   } else {
     totalTexto.textContent = "Total: $" + total.toFixed(2);
   }
